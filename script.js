@@ -49,7 +49,7 @@ const GameBoard = (()=> {
         }
     }
 
-    return {getValue, setValue, checkWin, board, resetBoard}
+    return {getValue, setValue, checkWin, resetBoard}
 
 })()
 
@@ -79,7 +79,7 @@ const Players = () => {
 }
 
 const DisplayController = (() => {
-    const {getValue, checkWin, board, resetBoard} = GameBoard
+    const {getValue, checkWin, resetBoard} = GameBoard
 
     const nameSelect = document.getElementsByClassName('nameSelect')[0]
     const gameboard = document.getElementsByClassName('gameboard')[0]
