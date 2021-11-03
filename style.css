@@ -55,9 +55,15 @@ div.cell{
     opacity: 0.4;
 }
 
+
+.notClickable{
+    pointer-events: none;
+}
+
 .statusBar{
     font-size: x-large;
     text-align: center;
+    font-family: "JetBrains Mono",monospace;
 
 }
 
@@ -94,6 +100,7 @@ div.cell{
 .result{
     margin-top: 10px;
     text-align: center;
+    font-family: "JetBrains Mono",monospace;
 }
 
 
@@ -143,9 +150,6 @@ div.cell{
   transform: translateY(2px);
 }
 
-.notClickable{
-    pointer-events: none;
-}
 
 input[type=text]{
     height: 30px;
@@ -154,6 +158,7 @@ input[type=text]{
     border-style: none;
     padding-left: 20px;
     font-size: large;
+    font-family: "JetBrains Mono",monospace;
 }
 
 label{
@@ -162,8 +167,13 @@ label{
 
 .nameSelect{
     text-align: center;
+    font-family: "JetBrains Mono",monospace;
 }
 
 #setname{
     margin: 5px;
+}
+
+.invisible{
+    display: none;
 }
