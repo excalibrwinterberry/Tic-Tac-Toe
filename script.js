@@ -57,10 +57,17 @@ const GameBoard = (()=> {
 const Players = () => {
     const {setValue} = GameBoard
     let symbol = ''
+    let name = ''
     const getSymbol =() => symbol
 
     const setSymbol = (input) => {
         symbol = input
+    }
+
+    const getName =() => name
+
+    const setName = (input) =>{
+        name = input
     }
 
     const playTurn = (index) =>{
@@ -68,7 +75,7 @@ const Players = () => {
         setValue(index, getSymbol())
     }
 
-    return {getSymbol, setSymbol, playTurn}
+    return {getSymbol, setSymbol, getName, setName, playTurn}
 }
 
 const DisplayController = (() => {
@@ -80,12 +87,35 @@ const DisplayController = (() => {
 
     let counter = 0 // even => player1 chance, odd => player2 chance
 
-
+    const setNameBtn = document.getElementById('setname')
     const xBtn = document.getElementById('x')
     const oBtn = document.getElementById('o')
     const resetBtn = document.getElementById('reset')
 
     const status = document.getElementById('status')
+
+    const handleSetNameEvent = (e) =>{
+        const inputp1 = document.getElementById('p1name').value.trim()
+        const inputp2 = document.getElementById('p2name').value.trim()
+
+        if(inputp1 !== ''){
+            player1.setName(inputp1)
+        }else{
+            player1.setName('Player1')
+        }
+
+        if(inputp2 !== ''){
+            player2.setName(inputp2)
+        }else{
+            player2.setName('Player2')
+        }
+        xBtn.classList.toggle('disabled')
+        oBtn.classList.toggle('disabled')
+
+        status.textContent = `Name of player1: ${player1.getName()}, Name of player2: ${player2.getName()}`
+
+
+    }
 
     const handleSymbolEvent = (e) =>{
 
@@ -99,7 +129,7 @@ const DisplayController = (() => {
         oBtn.classList.toggle("disabled")
         resetBtn.classList.toggle("disabled")
         gameboard.classList.toggle("disabled")
-        status.textContent = `Player 1 chose ${player1.getSymbol()}, Player 2 chose ${player2.getSymbol()}`
+        status.textContent = `${player1.getName()} chose ${player1.getSymbol()}, ${player2.getName()} chose ${player2.getSymbol()}`
     }
 
     const handleClickCell = (e) =>{
@@ -129,9 +159,9 @@ const DisplayController = (() => {
             gameboard.classList.toggle("disabled")
             status.textContent = "Game Over"
             if(result === player1.getSymbol()){
-                printRes = `Player1 Won`
+                printRes = `${player1.getName()} Won`
             }else{
-                printRes = `Player2 Won`
+                printRes = `${player2.getName()} Won`
             }
 
             document.getElementById('res').textContent = printRes 
@@ -159,7 +189,7 @@ const DisplayController = (() => {
         resetBoard()
 
         document.getElementById('res').textContent = ""
-        status.textContent = "Choose a symbol to start the game"
+        status.textContent = "Fill out player's name"
 
         xBtn.classList.toggle("disabled")
         oBtn.classList.toggle("disabled")
@@ -183,9 +213,14 @@ const DisplayController = (() => {
             gameboard.appendChild(cell)
         }
 
+        status.textContent = "Fill out player's name"
+
+        xBtn.classList.toggle('disabled')
+        oBtn.classList.toggle('disabled')
         xBtn.addEventListener('click', handleSymbolEvent)
         oBtn.addEventListener('click', handleSymbolEvent)
         resetBtn.addEventListener('click', handleResetEvent)
+        setNameBtn.addEventListener('click', handleSetNameEvent)
     }
 
     return {initialDisplay}

@@ -146,3 +146,24 @@ div.cell{
 .notClickable{
     pointer-events: none;
 }
+
+input[type=text]{
+    height: 30px;
+    margin: 10px;
+    border-radius: 10px;
+    border-style: none;
+    padding-left: 20px;
+    font-size: large;
+}
+
+label{
+    font-size: larger;
+}
+
+.nameSelect{
+    text-align: center;
+}
+
+#setname{
+    margin: 5px;
+}
