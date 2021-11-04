@@ -39,6 +39,25 @@ const GameBoard = (()=> {
         else if(board[2] !== "" && (board[2] === board[4] && board[2] === board[6])){
             return board[0]
         }
+        //tie
+        let isTie = true
+        // board.forEach((cell) =>{
+        //     if(cell === ""){
+        //         isTie = false
+        //         break
+        //     }
+        // })
+
+        for(let i=0; i<9; i++){
+            if(board[i] === ""){
+                isTie = false
+                break
+            }
+        }
+
+        if(isTie){
+            return "T"
+        }
 
         return ""
     }
@@ -169,8 +188,10 @@ const DisplayController = (() => {
             status.textContent = "Game Over"
             if(result === player1.getSymbol()){
                 printRes = `${player1.getName()} Won`
-            }else{
+            }else if(result === player2.getSymbol()){
                 printRes = `${player2.getName()} Won`
+            }else{
+                printRes = `All cells are filled, its a Tie`
             }
 
             document.getElementById('res').textContent = printRes 
